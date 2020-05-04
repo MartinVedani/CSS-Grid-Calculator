@@ -1,0 +1,146 @@
+/*  Tutorial videos: https://www.youtube.com/watch?v=LHKu6oDyZwg&feature=youtu.be 
+                    https://www.youtube.com/watch?v=LNGNJa0bCV8&feature=youtu.be */
+
+:root {
+    --main-color: #007bff;
+    --text-color: #f7f7f7;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.profile-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-container {
+    display: flex;
+    flex-flow: column-reverse nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#calc {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-areas: /**/
+    "seven eight nine plus clear"/**/
+    "four five six minus backspace"/**/
+    "one two three by divided"/**/
+    "float zeroo sqrt power equal";
+    /* zero con una sola o es una palabra reservada de css */
+    width: 500px;
+    height: 400px;
+}
+
+
+/* call each key id and link it to its respective area name for the grid-template-area to be implemented.
+Esto se puede hacer con Vue directamente en el HTML con "v-bind:id" y "v-bind:style" dentro del v-for y no hace falta hacerlo acá en el archivo .css - lo dejo como referencia, porque no hace falta.
+
+#zero {
+    grid-area: zeroo;
+}
+
+#one {
+    grid-area: one;
+}
+
+etc ....
+
+*/
+
+#clear {
+    background: #dc3545 !important;
+}
+
+#calc>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--main-color);
+    font-weight: bold;
+    font-size: 150%;
+    border-radius: 10px;
+    color: var(--text-color);
+    cursor: pointer;
+    box-shadow: 0 5px #999;
+}
+
+#calc>div:active {
+    box-shadow: 0 2px #666;
+    transform: translateY(3px);
+}
+
+#calc>div:hover {
+    background: #0000ff;
+}
+
+#output {
+    margin: 10px 0;
+    border: 2px solid #6c757d;
+    box-sizing: content-box;
+    border-radius: 10px;
+    width: 490px;
+    height: 50px;
+    padding-right: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-weight: bold;
+    font-size: 150%;
+    overflow: auto;
+}
+
+
+/* Program responsiveness */
+
+
+/* Estructura para ANCHO menor a ... = estructura hasta un ANCHO max de ... */
+
+@media only screen and (max-width: 576px) {
+    #calc {
+        width: 300px;
+        height: 375px;
+        grid-template-areas: /**/
+        "seven eight nine clear"/**/
+        "four five six backspace"/**/
+        "one two three by"/**/
+        "float zeroo sqrt divided"/**/
+        "plus minus power equal";
+        grid-template-columns: repeat(4, 65px);
+    }
+    #output {
+        width: 270px;
+    }
+}
+
+
+/* Estructura para ALTO menor a ... = estructura hasta un ALTO max de ...*/
+
+@media only screen and (max-height: 400px) {
+    #calc {
+        grid-template-areas: /**/
+        "seven eight nine plus clear"/**/
+        "four five six minus backspace"/**/
+        "one two three by divided"/**/
+        "float zeroo sqrt power equal";
+        width: 500px;
+        height: 220px;
+    }
+    #footer {
+        height: 10vh;
+    }
+}

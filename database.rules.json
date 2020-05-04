@@ -1,0 +1,12 @@
+{
+    /* Visit https://firebase.google.com/docs/database/security to learn more about security rules. */
+    "rules": {
+        "calc": {
+            "$uid": {
+                ".read": "$uid === auth.uid",
+                ".write": "$uid === auth.uid"
+                    /* solo podran leer y escribir usuarios authenticados. Y solo podran hacerlo en la carpeta "calc" que les pertenezca (cada usuario tendra su propia carpeta carpeta calc) */
+            }
+        }
+    }
+}

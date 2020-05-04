@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Hosting URL: https://css-grid-calculator.web.app -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid Calculator v2_FIREBASE</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="manifest" href="img/site.webmanifest">
+    <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="img/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- My STYLES -->
+    <link rel="stylesheet" href="styles/style.css">
+
+    <!--  Tutorial videos: 
+   Tutorial videos v1: 
+    https://www.youtube.com/watch?v=LHKu6oDyZwg&feature=youtu.be 
+    https://www.youtube.com/watch?v=LNGNJa0bCV8&feature=youtu.be 
+  
+    v2_FIREBASE: https://www.youtube.com/watch?v=LNGNJa0bCV8&feature=youtu.be  -->
+
+</head>
+
+<body>
+
+    <div id="app">
+
+        <navigator v-bind:userdata="user" v-bind:login-fn="login" :logout-fn="logout"></navigator>
+
+        <calc :userdata="user" :db="database" :history="calcHistory"></calc>
+
+        <!-- Una vez creado un componente de Vue (como <navigator> y <calc<) los podemos llamar por su nombre igual que a un elemento HTML para leer sus respectivos templates que se especificaron en sus respectivos archivos .js.
+
+            !!! class="container" pasa de la div "app" al elemento "calc" via el template
+            
+        Los datos, metodos y calculos de componentes Vue, solo pueden ser uzados por sí mismos a través de su template. Nadie más puede acceder a todo esto sin q cada atributo se emita desde un componente a otro via "props" y utilizando un "v-bind" en el archivo .html del elemento receptor. 
+        
+        Por ejemplo, <navigator> y <calc> acceden a a los datos de usuario de la app agregando "userdata" a sus props en sus respectivos archivos .js y usando un v-bind a "user" aquí en el archivo html para linkear la relacion con el atributo "user" que se genera con el login en el archivo main.js. Lo mismo hacemos para los props adicionales login-fn, logout-fn  de <navigator> y para el prop adicional "db" de <calc>. 
+
+        Luego del login, pasamos los datos de user desde main.js a userdata en navigator.js con un vbind aquí en el html y agregandolo  a props en donde se encuentra el componente Vue llamado navigator.
+
+        Exactamente de la misma forma, enviamos la funcion login() y logout() dentro de los métodos de app (en main.js) a navigator.js como prop llamado login-fn.
+
+        "v-bind:etc" puede ser abreviado simplemente con ":etc".
+        
+        Ojo con la referencia de cammelCase en archivos .js con su equivalente en archivos .html. 
+        
+        En navigator.js usamos cammelCase para loginFn, aca en index.html se reemplaza el cammelCase con guión, etonces loginFn (en .js) = login-fn (en .html).
+
+        calcHistory en <calc> esta dentro de "" (y no por fuera como login-fn), por lo que no es afectada en este archivo html ya que el nombre que html toma como variable es simplemente "history"
+
+        -->
+
+    </div>
+
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <!-- Vue.js Development HEAVY version-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- Vue Production LIGHTER version
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyB5GM1QF0euMh7IiBKIh1rchJdCuwQDJB8",
+            authDomain: "css-grid-calculator.firebaseapp.com",
+            databaseURL: "https://css-grid-calculator.firebaseio.com",
+            projectId: "css-grid-calculator",
+            storageBucket: "css-grid-calculator.appspot.com",
+            messagingSenderId: "944842763002",
+            appId: "1:944842763002:web:284c88655c6fadafbbb743",
+            measurementId: "G-VVMFLR6FLB"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+
+    <!-- My Script -->
+    <script src="js/calc_history.js"></script>
+    <script src="js/navigator.js"></script>
+    <script src="js/v2_calc.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
